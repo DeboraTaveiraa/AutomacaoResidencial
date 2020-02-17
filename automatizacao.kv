@@ -1,0 +1,64 @@
+<PaginaInicial>:
+    Menu:
+        name: 'menu'
+    Controles:
+        name: 'controles'
+
+<Menu>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 200
+        spacing: 50
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 0.5
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Button:
+            text: 'Ir para o controle'
+            font_size: 25
+            on_release: app.root.current = 'controles'
+        Button:
+            text: 'Sair'
+            on_release: app.stop()
+
+<Controles>:
+    BoxLayout:
+        orientation: 'vertical'
+        height: 5
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    title: 'Automatizacao Residencial'
+                    on_release: app.root.current = 'menu'
+                ActionButton:
+                    text: 'Sair'
+                    on_release: app.stop()
+        Label:
+            id: label
+            text: 'Controle Residencial'
+            font_size: 30
+        BoxLayout:
+            id: box
+            canvas:
+                Color:
+                    rgba: 1, 1, 1, 0.5
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Button:
+                id: btlamp
+                background_normal: 'lampada.png'
+                border: 0, 0, 0, 0
+                text: 'Ligar Lampada'
+                font_size: 20
+                on_release: root.statusLampada()
+            Button:
+                id: btvent
+                background_normal: 'ventilador.png'
+                border: 0, 0, 0, 0
+                text: 'Ligar Ventilador'
+                font_size: 20
+                on_release: root.statusVentilador()
